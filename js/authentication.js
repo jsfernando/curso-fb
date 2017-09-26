@@ -83,12 +83,28 @@ authGitHubButton.addEventListener('click', function(){
     signIn(provider)
 })
 
-//google
+//autenticar via google
 authGoogleButton.addEventListener('click', function(){
     //Providers
     var provider= new firebase.auth.GoogleAuthProvider()
     signIn(provider)
 })
+
+//autenticar com Facebook
+authFacebookButton.addEventListener('click', function(){
+    //Providers
+    var provider= new firebase.auth.FacebookAuthProvider()
+    signIn(provider)
+})
+
+
+//autenticar vom Twitter
+authTwitterButton.addEventListener('click', function(){
+    //Providers
+    var provider= new firebase.auth.TwitterAuthProvider()
+    signIn(provider)
+})
+
 
 function signIn(provider){
     firebase.auth()
