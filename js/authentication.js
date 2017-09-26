@@ -83,6 +83,13 @@ authGitHubButton.addEventListener('click', function(){
     signIn(provider)
 })
 
+//google
+authGoogleButton.addEventListener('click', function(){
+    //Providers
+    var provider= new firebase.auth.GoogleAuthProvider()
+    signIn(provider)
+})
+
 function signIn(provider){
     firebase.auth()
         .signInWithPopup(provider) // na web abre um popup na tela de conexão
