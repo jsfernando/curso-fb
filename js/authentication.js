@@ -15,6 +15,7 @@ var passwordInput = document.getElementById('passwordInput');
 //Display
 var displayName = document.getElementById('displayName');
 
+//Criar usuario com e-mail/senha
 createUserButton.addEventListener('click', function(){
     firebase
         .auth()
@@ -29,6 +30,7 @@ createUserButton.addEventListener('click', function(){
         })
 })
 
+// autenticar usuário email/senha
 authEmailPassButton.addEventListener('click', function(){
     firebase
         .auth()
@@ -45,6 +47,7 @@ authEmailPassButton.addEventListener('click', function(){
         })
 })
 
+//logoff
 logOutButton.addEventListener('click', function(){
     firebase
         .auth()
@@ -57,6 +60,7 @@ logOutButton.addEventListener('click', function(){
         })
 })
 
+//autenticar anonymols
 authAnnymouslyButton.addEventListener('click', function(){
     firebase
         .auth()
@@ -71,3 +75,23 @@ authAnnymouslyButton.addEventListener('click', function(){
             alert('Falha ao autenticar, verifique o erro no console')
         })
 })
+
+//autenticar com GitHub
+authGitHubButton.addEventListener('click', function(){
+    //Provider
+    var provider = new firebase.auth.GithubAuthProvider()
+    signIn(provider)
+})
+
+function signIn(provider){
+    firebase.auth()
+        .signInWithPopup(provider) // na web abre um popup na tela de conexão
+        .then(function(result){
+            console.log(result)
+            var token = result.credential.accessToken // armazenar o token
+            displayName.innerText = 'Bem vindo, '+ result.user.displayName
+        }).catch(function(error){
+            console.log(error)
+            alert('Falha na autenticação')
+        })
+}
